@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { createPortal } from "react-dom";
+import "../styles/Modal.css";
 
 type ModalProps = {
   isOpen: boolean;
