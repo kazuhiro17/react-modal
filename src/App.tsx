@@ -1,20 +1,21 @@
-import { useState } from "react";
 import "./App.css";
 import { Modal } from "./components/Modal";
+import { useModal } from "./hooks/useModal";
 
 export const App = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const { isOpen, modalType, openModal, closeModal } = useModal();
 
   return (
     <>
       <div className="app">
         <h1>React Modal Example</h1>
-        <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+        <div className="button-wrap">
+          <button onClick={() => openModal("info")}>情報モーダルを開く</button>
+          <button onClick={() => openModal("warning")}>警告モーダルを開く</button>
+          <button onClick={() => openModal("success")}>成功モーダルを開く</button>
+        </div>
 
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <h2>モーダルの内容</h2>
-          <p>これはモーダルウィンドウです。</p>
-        </Modal>
+        <Modal isOpen={isOpen} onClose={closeModal} type={modalType} />
       </div>
     </>
   );
